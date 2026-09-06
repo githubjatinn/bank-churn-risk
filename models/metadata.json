@@ -1,0 +1,78 @@
+{
+  "feature_names": [
+    "Geography_Germany",
+    "Geography_Spain",
+    "Gender_Male",
+    "CreditScore",
+    "Age",
+    "Tenure",
+    "Balance",
+    "NumOfProducts",
+    "EstimatedSalary",
+    "balance_salary_ratio",
+    "product_density",
+    "engagement_product_interaction",
+    "age_tenure_interaction",
+    "HasCrCard",
+    "IsActiveMember",
+    "is_overexposed",
+    "is_zero_balance"
+  ],
+  "n_train": 8000,
+  "n_test": 2000,
+  "churn_rate_train": 0.20375,
+  "production_model": "random_forest",
+  "cross_validation": {
+    "logistic_regression": {
+      "mean": 0.8305568664464371,
+      "std": 0.012338498390996069,
+      "folds": [
+        0.8305563848946845,
+        0.8413744450116054,
+        0.8428576244088952,
+        0.8083761111806684,
+        0.8296197667363312
+      ]
+    },
+    "random_forest": {
+      "mean": 0.8585287630861689,
+      "std": 0.010518445827481997,
+      "folds": [
+        0.8566901984956323,
+        0.8689745836985101,
+        0.8716351571303369,
+        0.84359921410754,
+        0.8517446619988251
+      ]
+    }
+  },
+  "test_metrics": {
+    "logistic_regression": {
+      "accuracy": 0.763,
+      "precision": 0.45037037037037037,
+      "recall": 0.7469287469287469,
+      "f1": 0.5619223659889094,
+      "roc_auc": 0.8364157686191585,
+      "confusion_matrix": {
+        "true_negative": 1222,
+        "false_positive": 371,
+        "false_negative": 103,
+        "true_positive": 304
+      }
+    },
+    "random_forest": {
+      "accuracy": 0.8295,
+      "precision": 0.5684647302904564,
+      "recall": 0.6732186732186732,
+      "f1": 0.6164229471316085,
+      "roc_auc": 0.8647013731759494,
+      "confusion_matrix": {
+        "true_negative": 1385,
+        "false_positive": 208,
+        "false_negative": 133,
+        "true_positive": 274
+      }
+    }
+  },
+  "saved_at": "2026-09-05T14:19:53.162774+00:00"
+}

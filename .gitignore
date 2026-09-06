@@ -1,5 +1,5 @@
 # Trained model artifacts — regenerate with `python run_pipeline.py`
-models/
+
 
 # Processed data — regenerate with `python run_pipeline.py`
 data/processed/*.parquet
