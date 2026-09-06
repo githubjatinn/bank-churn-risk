@@ -1,0 +1,16 @@
+# Trained model artifacts — regenerate with `python run_pipeline.py`
+models/
+
+# Processed data — regenerate with `python run_pipeline.py`
+data/processed/*.parquet
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Streamlit
+.streamlit/

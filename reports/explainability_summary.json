@@ -1,0 +1,230 @@
+{
+  "shap_sample_size": 500,
+  "random_forest_importance": [
+    {
+      "feature": "Age",
+      "importance": 0.27690704417203454
+    },
+    {
+      "feature": "NumOfProducts",
+      "importance": 0.14177934239272919
+    },
+    {
+      "feature": "Balance",
+      "importance": 0.07372887011824318
+    },
+    {
+      "feature": "engagement_product_interaction",
+      "importance": 0.06625330034411137
+    },
+    {
+      "feature": "is_overexposed",
+      "importance": 0.06282056791546793
+    },
+    {
+      "feature": "age_tenure_interaction",
+      "importance": 0.05828569108464259
+    },
+    {
+      "feature": "balance_salary_ratio",
+      "importance": 0.048240811488629395
+    },
+    {
+      "feature": "Geography_Germany",
+      "importance": 0.04777356669687085
+    },
+    {
+      "feature": "CreditScore",
+      "importance": 0.046526965956329755
+    },
+    {
+      "feature": "EstimatedSalary",
+      "importance": 0.04592815719966556
+    },
+    {
+      "feature": "product_density",
+      "importance": 0.03805579715614329
+    },
+    {
+      "feature": "IsActiveMember",
+      "importance": 0.03016016482069994
+    },
+    {
+      "feature": "Tenure",
+      "importance": 0.022409095417824553
+    },
+    {
+      "feature": "Gender_Male",
+      "importance": 0.015504657547890639
+    },
+    {
+      "feature": "is_zero_balance",
+      "importance": 0.012178735484964525
+    },
+    {
+      "feature": "Geography_Spain",
+      "importance": 0.007376575370648297
+    },
+    {
+      "feature": "HasCrCard",
+      "importance": 0.006070656833104393
+    }
+  ],
+  "shap_importance": [
+    {
+      "feature": "Age",
+      "mean_abs_shap": 0.13004398046371285
+    },
+    {
+      "feature": "NumOfProducts",
+      "mean_abs_shap": 0.08320456605231838
+    },
+    {
+      "feature": "engagement_product_interaction",
+      "mean_abs_shap": 0.03965538727682018
+    },
+    {
+      "feature": "Geography_Germany",
+      "mean_abs_shap": 0.0387647609220604
+    },
+    {
+      "feature": "IsActiveMember",
+      "mean_abs_shap": 0.03299704245651818
+    },
+    {
+      "feature": "is_overexposed",
+      "mean_abs_shap": 0.02517921903300271
+    },
+    {
+      "feature": "Balance",
+      "mean_abs_shap": 0.023509319754070078
+    },
+    {
+      "feature": "Gender_Male",
+      "mean_abs_shap": 0.019913922678981174
+    },
+    {
+      "feature": "age_tenure_interaction",
+      "mean_abs_shap": 0.015936722219949826
+    },
+    {
+      "feature": "product_density",
+      "mean_abs_shap": 0.013772228795374658
+    },
+    {
+      "feature": "balance_salary_ratio",
+      "mean_abs_shap": 0.012856180575713244
+    },
+    {
+      "feature": "CreditScore",
+      "mean_abs_shap": 0.01012379325448665
+    },
+    {
+      "feature": "EstimatedSalary",
+      "mean_abs_shap": 0.009239239054337624
+    },
+    {
+      "feature": "is_zero_balance",
+      "mean_abs_shap": 0.00793263445941037
+    },
+    {
+      "feature": "Tenure",
+      "mean_abs_shap": 0.007618016938723184
+    },
+    {
+      "feature": "Geography_Spain",
+      "mean_abs_shap": 0.0026670569062158572
+    },
+    {
+      "feature": "HasCrCard",
+      "mean_abs_shap": 0.0020856272667865074
+    }
+  ],
+  "logistic_odds_ratios": [
+    {
+      "feature": "is_overexposed",
+      "coefficient": 5.893277097779214,
+      "odds_ratio": 362.59158758122567
+    },
+    {
+      "feature": "IsActiveMember",
+      "coefficient": -1.050152877728885,
+      "odds_ratio": 0.34988425551191427
+    },
+    {
+      "feature": "Geography_Germany",
+      "coefficient": 0.9631863208180504,
+      "odds_ratio": 2.6200314481667544
+    },
+    {
+      "feature": "NumOfProducts",
+      "coefficient": -0.9153253961682111,
+      "odds_ratio": 0.40038632071696845
+    },
+    {
+      "feature": "Age",
+      "coefficient": 0.711741150115676,
+      "odds_ratio": 2.037535827679941
+    },
+    {
+      "feature": "Gender_Male",
+      "coefficient": -0.5421026537803662,
+      "odds_ratio": 0.5815242218652907
+    },
+    {
+      "feature": "is_zero_balance",
+      "coefficient": 0.23650887974308402,
+      "odds_ratio": 1.2668188045957087
+    },
+    {
+      "feature": "age_tenure_interaction",
+      "coefficient": 0.13354190745288078,
+      "odds_ratio": 1.1428691598670162
+    },
+    {
+      "feature": "HasCrCard",
+      "coefficient": -0.11118743498939447,
+      "odds_ratio": 0.8947710218135729
+    },
+    {
+      "feature": "Geography_Spain",
+      "coefficient": 0.10631619160200514,
+      "odds_ratio": 1.1121734808310457
+    },
+    {
+      "feature": "product_density",
+      "coefficient": 0.10565840136071318,
+      "odds_ratio": 1.1114421445280431
+    },
+    {
+      "feature": "engagement_product_interaction",
+      "coefficient": 0.0899381186314473,
+      "odds_ratio": 1.0941065767980191
+    },
+    {
+      "feature": "CreditScore",
+      "coefficient": -0.08596098197523955,
+      "odds_ratio": 0.9176300346330695
+    },
+    {
+      "feature": "Tenure",
+      "coefficient": -0.07605276964999191,
+      "odds_ratio": 0.9267673000829555
+    },
+    {
+      "feature": "Balance",
+      "coefficient": 0.07545361368330666,
+      "odds_ratio": 1.0783732047968795
+    },
+    {
+      "feature": "EstimatedSalary",
+      "coefficient": 0.07377167080657816,
+      "odds_ratio": 1.0765609671339553
+    },
+    {
+      "feature": "balance_salary_ratio",
+      "coefficient": 0.06132377375406525,
+      "odds_ratio": 1.0632431086763976
+    }
+  ]
+}
