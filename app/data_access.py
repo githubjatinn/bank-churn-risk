@@ -1,12 +1,6 @@
 import sys
 from pathlib import Path
 
-# Every page in this app runs as an independent script under Streamlit, so
-# none of them can rely on a package-relative import reaching src/. Walking
-# upward from this file's own location (not the caller's) to find the
-# project root works identically regardless of which page imports this
-# module or how deep it's nested — safer than trusting Streamlit's own
-# sys.path behavior to stay consistent across versions.
 _current = Path(__file__).resolve()
 for _parent in _current.parents:
     if (_parent / "src").is_dir():
@@ -17,6 +11,8 @@ else:
 
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
+
+import logging
 
 import pandas as pd
 import shap
@@ -29,6 +25,8 @@ from src.features.engineer import add_derived_features
 from src.modeling.explain import build_tree_explainer, explain_single_prediction, get_base_value
 from src.modeling.registry import artifacts_exist, load_logistic_model, load_metadata, load_model, load_preprocessor
 
+logger = logging.getLogger(__name__)
+
 RISK_TIERS = [
     (0.0, 0.3, "Low"),
     (0.3, 0.6, "Medium"),
@@ -38,10 +36,40 @@ RISK_TIERS = [
 
 @st.cache_resource(show_spinner="Loading trained model...")
 def load_artifacts() -> dict:
-    if not artifacts_exist():
-        raise FileNotFoundError(
-            "Model artifacts not found in models/ — run `python run_pipeline.py` first."
-        )
+    try:
+        if not artifacts_exist():
+            raise FileNotFoundError("no artifacts on disk")
+        return {
+            "model": load_model(),
+            "logistic_model": load_logistic_model(),
+            "preprocessor": load_preprocessor(),
+            "metadata": load_metadata(),
+        }
+    except Exception as exc:
+        # Committed pickle files were serialized by whatever scikit-learn
+        # version trained them locally. A hosting platform that controls
+        # its own Python/library versions (Streamlit Cloud ignores
+        # runtime.txt and forces its own Python release) can easily end up
+        # running a different scikit-learn version, and pickled sklearn
+        # objects aren't guaranteed compatible across versions. Rather than
+        # chase version-pinning across two environments we don't fully
+        # control, retrain from scratch using whatever's actually
+        # installed here — slower on first load, but can't drift.
+        logger.warning("could not load saved artifacts (%s) — training fresh instead", exc)
+        return _train_fresh()
+
+
+def _train_fresh() -> dict:
+    """Trains and saves the model using whatever scikit-learn/numpy/joblib
+    versions are actually installed in this process — the one guarantee
+    that matters when the deployment platform doesn't let us control its
+    own Python version."""
+    from src.modeling.train import train as train_model
+
+    raw = load_raw(config.RAW_DATA_PATH)
+    featured = add_derived_features(clean(raw))
+    train_model(featured)
+
     return {
         "model": load_model(),
         "logistic_model": load_logistic_model(),
@@ -66,10 +94,6 @@ def load_scored_customers() -> pd.DataFrame:
     artifacts = load_artifacts()
     raw = load_raw(config.RAW_DATA_PATH)
 
-    # clean()'s first step is exactly this same dedup, and it never removes
-    # rows afterward — so this stays aligned with the cleaned/engineered
-    # frame by position. CustomerId itself never touches the model; it's
-    # here purely so the app can let someone pick a specific customer.
     customer_ids = raw.drop_duplicates(subset="CustomerId").reset_index(drop=True)["CustomerId"]
 
     featured = add_derived_features(clean(raw))
